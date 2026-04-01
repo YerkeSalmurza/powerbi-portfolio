@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +15,11 @@
         .hero .location { color: #8b949e; font-size: 0.9rem; margin-top: 4px; }
         .badges { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
         .badge { background: #21262d; border: 1px solid #30363d; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; color: #f0c040; }
-        .social-links { margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .social-links { margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .social-links a { background: #21262d; border: 1px solid #30363d; padding: 8px 16px; border-radius: 8px; color: #e6edf3; text-decoration: none; font-size: 0.85rem; transition: border-color 0.2s; }
         .social-links a:hover { border-color: #f0c040; color: #f0c040; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-
         .section { margin-bottom: 50px; }
         .section-heading { font-size: 1.2rem; font-weight: 700; color: #f0c040; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
 
@@ -29,6 +27,15 @@
         .cert { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #e6edf3; text-decoration: none; transition: border-color 0.2s; }
         .cert:hover { border-color: #f0c040; color: #f0c040; }
         .cert span { display: block; color: #8b949e; font-size: 0.75rem; margin-top: 4px; }
+
+        .exp-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #21262d; }
+        .exp-item:last-child { border-bottom: none; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+        .exp-company { font-weight: 700; color: #f0c040; font-size: 1rem; }
+        .exp-role { color: #e6edf3; font-size: 0.9rem; margin-top: 2px; }
+        .exp-period { color: #8b949e; font-size: 0.8rem; white-space: nowrap; }
+        .exp-desc { color: #8b949e; font-size: 0.85rem; margin-top: 10px; line-height: 1.7; }
+        .exp-desc li { margin-left: 16px; margin-top: 4px; }
 
         .project { background: #161b22; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 40px; overflow: hidden; }
         .project-header { padding: 24px 30px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
@@ -63,26 +70,97 @@
         <span class="badge">DAX</span>
         <span class="badge">Power Query</span>
         <span class="badge">SQL</span>
-        <span class="badge">Excel</span>
+        <span class="badge">ETL</span>
+        <span class="badge">Dataflow</span>
     </div>
     <div class="social-links">
         <a href="https://linkedin.com/in/yerke-salmurza" target="_blank">💼 LinkedIn</a>
         <a href="https://t.me/eldehea" target="_blank">✈️ Telegram</a>
+        <a href="https://wa.me/77024284444" target="_blank">💬 WhatsApp</a>
         <a href="mailto:yerke.salmurza@gmail.com">📧 Email</a>
     </div>
 </div>
 
 <div class="container">
 
+    <!-- ABOUT -->
     <div class="section">
         <div class="section-heading">👤 About Me</div>
         <p style="color:#8b949e; line-height:1.7;">
-            BI Analyst with 4+ years of experience in fintech and telecom.
-            I specialize in designing BI solutions in Power BI, optimizing data marts,
-            and automating reporting. Worked at Beeline, Bank CenterCredit, KMF, and TBC Bank / Payme.
+            BI Analyst with 5+ years of experience in fintech and telecom, specializing in building
+            end-to-end BI solutions and turning raw data into actionable insights. Skilled in Power BI,
+            SQL, and ETL processes — from optimizing data models to automating reporting and delivering
+            dashboards that drive real decisions. Open to Data Analyst and Product Analyst roles —
+            a fast learner, ready to transition.
         </p>
     </div>
 
+    <!-- EXPERIENCE -->
+    <div class="section">
+        <div class="section-heading">💼 Work Experience</div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-company">TBC Bank / Payme</div>
+                    <div class="exp-role">BI Analyst / Developer</div>
+                </div>
+                <div class="exp-period">Oct 2025 — Present · Tashkent</div>
+            </div>
+            <ul class="exp-desc">
+                <li>Developed BI dashboards for P2P, Subscriptions, Transfers, and Remittance (MAU, DAU, cohorts, unit economics, PnL)</li>
+                <li>Collaborated with product teams to deliver dashboards based on product analytics requirements</li>
+                <li>Implemented monthly reporting for top management with automated PDF export, replacing manual PowerPoint reports</li>
+            </ul>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-company">KMF Bank</div>
+                    <div class="exp-role">Data Analyst</div>
+                </div>
+                <div class="exp-period">Feb 2025 — Oct 2025 · Almaty</div>
+            </div>
+            <ul class="exp-desc">
+                <li>Analyzed credit funnel: conversion rates, drop-offs, bottlenecks</li>
+                <li>Supported product decisions through data analysis and pilot evaluation</li>
+                <li>Developed and maintained management reporting for the loan portfolio</li>
+            </ul>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-company">Bank CenterCredit</div>
+                    <div class="exp-role">BI Analyst / Developer</div>
+                </div>
+                <div class="exp-period">Jan 2024 — Jan 2025 · Almaty</div>
+            </div>
+            <ul class="exp-desc">
+                <li>Launched 15+ KPI dashboards in Power BI for retail department (cards, deposits, loans, mortgages)</li>
+                <li>Automated branch reporting from Excel to Power BI — real-time KPI tracking</li>
+                <li>Developed branch ranking system and KPI visualization (traffic light approach)</li>
+            </ul>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-company">Beeline Kazakhstan</div>
+                    <div class="exp-role">Data Analyst</div>
+                </div>
+                <div class="exp-period">Oct 2021 — Dec 2023 · Almaty</div>
+            </div>
+            <ul class="exp-desc">
+                <li>Built dashboards for B2C segment: Revenue, ARPU, Survival and other key metrics</li>
+                <li>Replaced monthly PowerPoint reports with interactive dashboards — saved 2 weeks/month</li>
+                <li>Migrated partner competition reports from Excel to Power BI — saved 6+ hours/week</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
     <div class="section">
         <div class="section-heading">📜 Certifications</div>
         <div class="certs">
@@ -105,6 +183,7 @@
         </div>
     </div>
 
+    <!-- PROJECTS -->
     <div class="section">
         <div class="section-heading">📊 Projects</div>
 
@@ -152,7 +231,7 @@
 </div>
 
 <footer>
-    <p>© 2025 Yerke Salmurza · <a href="https://linkedin.com/in/yerke-salmurza">LinkedIn</a> · <a href="https://t.me/eldehea">Telegram</a></p>
+    <p>© 2025 Yerke Salmurza · <a href="https://linkedin.com/in/yerke-salmurza">LinkedIn</a> · <a href="https://t.me/eldehea">Telegram</a> · <a href="https://wa.me/77024284444">WhatsApp</a></p>
 </footer>
 
 </body>
