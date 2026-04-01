@@ -1,1 +1,159 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerke Salmurza | Power BI Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; }
+
+        .hero { background: linear-gradient(135deg, #161b22 0%, #1c2333 100%); padding: 60px 20px; text-align: center; border-bottom: 1px solid #30363d; }
+        .hero img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #f0c040; margin-bottom: 20px; }
+        .hero h1 { font-size: 2rem; color: #f0c040; }
+        .hero .title { color: #8b949e; margin-top: 6px; font-size: 1rem; }
+        .hero .location { color: #8b949e; font-size: 0.9rem; margin-top: 4px; }
+        .badges { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .badge { background: #21262d; border: 1px solid #30363d; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; color: #f0c040; }
+        .social-links { margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .social-links a { background: #21262d; border: 1px solid #30363d; padding: 8px 16px; border-radius: 8px; color: #e6edf3; text-decoration: none; font-size: 0.85rem; transition: border-color 0.2s; }
+        .social-links a:hover { border-color: #f0c040; color: #f0c040; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        .section { margin-bottom: 50px; }
+        .section-heading { font-size: 1.2rem; font-weight: 700; color: #f0c040; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+
+        .certs { display: flex; gap: 12px; flex-wrap: wrap; }
+        .cert { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #e6edf3; text-decoration: none; transition: border-color 0.2s; }
+        .cert:hover { border-color: #f0c040; color: #f0c040; }
+        .cert span { display: block; color: #8b949e; font-size: 0.75rem; margin-top: 4px; }
+
+        .project { background: #161b22; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 40px; overflow: hidden; }
+        .project-header { padding: 24px 30px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .project-header h2 { font-size: 1.3rem; color: #f0c040; }
+        .project-header p { color: #8b949e; margin-top: 8px; font-size: 0.9rem; }
+        .project-link { background: #21262d; border: 1px solid #30363d; padding: 8px 14px; border-radius: 8px; color: #f0c040; text-decoration: none; font-size: 0.8rem; white-space: nowrap; flex-shrink: 0; }
+        .project-link:hover { border-color: #f0c040; }
+        .project-body { padding: 24px 30px; }
+        .sub-title { font-size: 0.8rem; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; }
+        .sub-title:first-child { margin-top: 0; }
+        .screenshots { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 12px; }
+        .screenshot { border-radius: 8px; overflow: hidden; border: 1px solid #30363d; }
+        .screenshot img { width: 100%; display: block; transition: transform 0.3s; }
+        .screenshot img:hover { transform: scale(1.02); }
+        .screenshot p { background: #21262d; padding: 8px 12px; font-size: 0.8rem; color: #8b949e; }
+        .stack { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { background: #21262d; border: 1px solid #30363d; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; color: #f0c040; }
+
+        footer { text-align: center; padding: 30px; color: #8b949e; border-top: 1px solid #30363d; font-size: 0.85rem; }
+        footer a { color: #f0c040; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <img src="Ретушь1.jpg" alt="Yerke Salmurza">
+    <h1>Yerke Salmurza</h1>
+    <div class="title">BI Analyst / Developer</div>
+    <div class="location">📍 Almaty, Kazakhstan</div>
+    <div class="badges">
+        <span class="badge">Power BI</span>
+        <span class="badge">DAX</span>
+        <span class="badge">Power Query</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Excel</span>
+    </div>
+    <div class="social-links">
+        <a href="https://linkedin.com/in/yerke-salmurza" target="_blank">💼 LinkedIn</a>
+        <a href="https://t.me/eldehea" target="_blank">✈️ Telegram</a>
+        <a href="mailto:yerke.salmurza@gmail.com">📧 Email</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="section">
+        <div class="section-heading">👤 About Me</div>
+        <p style="color:#8b949e; line-height:1.7;">
+            BI Analyst with 4+ years of experience in fintech and telecom.
+            I specialize in designing BI solutions in Power BI, optimizing data marts,
+            and automating reporting. Worked at Beeline, Bank CenterCredit, KMF, and TBC Bank / Payme.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-heading">📜 Certifications</div>
+        <div class="certs">
+            <a class="cert" href="https://learn.microsoft.com/en-us/users/yerkesalmurza/credentials/certification/data-analyst-associate?tab=credentials-tab" target="_blank">
+                ✅ Power BI Data Analyst Associate
+                <span>Microsoft Certified · 2021</span>
+            </a>
+            <a class="cert" href="https://learn.microsoft.com/en-us/users/yerkesalmurza/credentials/certification-o-/mta-database-fundamentals?tab=credentials-tab" target="_blank">
+                ✅ MTA Database Fundamentals
+                <span>Microsoft Certified · 2022</span>
+            </a>
+            <a class="cert" href="#">
+                ✅ Product Masters: Data Analyst
+                <span>2025</span>
+            </a>
+            <a class="cert" href="#">
+                🔄 Data Engineer Course
+                <span>In progress</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-heading">📊 Projects</div>
+
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <h2>📊 KPI Sales Tracker Dashboard</h2>
+                    <p>Track sales plan execution across regions and months, and forecast the final year-end performance based on actual results and working days passed.</p>
+                </div>
+                <a class="project-link" href="https://github.com/YerkeSalmurza/powerbi-portfolio/tree/main/01_kpi-sales-tracker" target="_blank">→ GitHub</a>
+            </div>
+            <div class="project-body">
+                <div class="sub-title">📸 Dashboard Pages</div>
+                <div class="screenshots">
+                    <div class="screenshot">
+                        <img src="01_kpi-sales-tracker/screenshots/01_plan-vs-actual.png" alt="Plan vs Actual">
+                        <p>Plan vs Actual</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="01_kpi-sales-tracker/screenshots/02_rate.png" alt="Rate">
+                        <p>Rate</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="01_kpi-sales-tracker/screenshots/03_forecast.png" alt="Forecast">
+                        <p>Forecast</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="01_kpi-sales-tracker/screenshots/04_pivot.png" alt="Pivot">
+                        <p>Pivot</p>
+                    </div>
+                </div>
+                <div class="sub-title" style="margin-top:20px;">🛠️ Stack</div>
+                <div class="stack">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">DAX</span>
+                    <span class="tag">Power Query</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">RLS</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2025 Yerke Salmurza · <a href="https://linkedin.com/in/yerke-salmurza">LinkedIn</a> · <a href="https://t.me/eldehea">Telegram</a></p>
+</footer>
+
+</body>
+</html>
