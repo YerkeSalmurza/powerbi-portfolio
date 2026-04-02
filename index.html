@@ -28,6 +28,18 @@
         .cert:hover { border-color: #f0c040; color: #f0c040; }
         .cert span { display: block; color: #8b949e; font-size: 0.75rem; margin-top: 4px; }
 
+        /* RECOMMENDATIONS */
+        .recs { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 16px; }
+        .rec { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 24px; }
+        .rec-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+        .rec-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f0c040; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0d1117; font-size: 1rem; flex-shrink: 0; }
+        .rec-name { font-weight: 700; color: #e6edf3; font-size: 0.95rem; }
+        .rec-role { color: #8b949e; font-size: 0.8rem; margin-top: 2px; }
+        .rec-date { color: #8b949e; font-size: 0.75rem; margin-top: 2px; }
+        .rec-text { color: #8b949e; font-size: 0.85rem; line-height: 1.7; font-style: italic; }
+        .rec-text::before { content: '"'; color: #f0c040; font-size: 1.2rem; }
+        .rec-text::after { content: '"'; color: #f0c040; font-size: 1.2rem; }
+
         .project { background: #161b22; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 40px; overflow: hidden; }
         .project-header { padding: 24px 30px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
         .project-header h2 { font-size: 1.3rem; color: #f0c040; }
@@ -78,11 +90,13 @@
     <div class="section">
         <div class="section-heading">👤 About Me</div>
         <p style="color:#8b949e; line-height:1.7;">
-            BI Analyst with 5+ years of experience in fintech and telecom, specializing in building
-            end-to-end BI solutions and turning raw data into actionable insights. Skilled in Power BI,
-            SQL, and ETL processes — from optimizing data models to automating reporting and delivering
-            dashboards that drive real decisions. Open to Data Analyst and Product Analyst roles —
-            a fast learner, ready to transition.
+            I'm a BI & Data Analyst with 5 years of experience in fintech and telecom, specializing in
+            end-to-end BI development: data modeling, Power BI dashboards for C-level reporting, and
+            product metrics (MAU/DAU, cohort analysis, unit economics, P&L). I've worked across various
+            domains in fintech and telecom — translating complex business questions into scalable reporting
+            solutions and collaborating closely with product owners and data engineers. Constantly developing
+            my technical stack — currently taking a Data Engineering course, with focus on Python, dbt, and
+            Airflow. Open to BI, Data Analyst, and Product Analyst roles — preferably remote.
         </p>
     </div>
 
@@ -106,6 +120,62 @@
                 🔄 Data Engineer Course
                 <span>In progress</span>
             </a>
+        </div>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div class="section">
+        <div class="section-heading">💬 Recommendations</div>
+        <div class="recs">
+
+            <div class="rec">
+                <div class="rec-header">
+                    <div class="rec-avatar">G</div>
+                    <div>
+                        <div class="rec-name">Giorgi Okrojanashvili</div>
+                        <div class="rec-role">Head of BI at Space Int · TBC UZ · Payme UZ</div>
+                        <div class="rec-date">March 2026 · Direct manager</div>
+                    </div>
+                </div>
+                <div class="rec-text">Yerke is one of the most bright-minded employees I have worked with. She has an exceptional sense for working with data, demonstrating strong data-mining, analytical, and problem-solving skills. She consistently takes responsibility for her tasks, proactively follows up on issues, and does everything needed to deliver results on time. It is a pleasure working with her, and any team would be fortunate to have such a dedicated, capable, and responsible specialist.</div>
+            </div>
+
+            <div class="rec">
+                <div class="rec-header">
+                    <div class="rec-avatar">N</div>
+                    <div>
+                        <div class="rec-name">Nikoloz Kalichava</div>
+                        <div class="rec-role">Power BI Developer · TBC Group</div>
+                        <div class="rec-date">March 2026 · Colleague</div>
+                    </div>
+                </div>
+                <div class="rec-text">I had the pleasure of working with Yerke Salmurza at TBC Group. A highly dedicated employee who consistently completes her tasks — even when they seem impossible, she finds a way to deliver. Responsible and reliable — she always completes her work to the highest standard. Friendly and supportive — always willing to help others. A great asset to any employer.</div>
+            </div>
+
+            <div class="rec">
+                <div class="rec-header">
+                    <div class="rec-avatar">Д</div>
+                    <div>
+                        <div class="rec-name">Дастан Мусаханов</div>
+                        <div class="rec-role">Head of L&D · Bank CenterCredit</div>
+                        <div class="rec-date">January 2025 · Colleague</div>
+                    </div>
+                </div>
+                <div class="rec-text">С Ерке мы работали в одной дирекции и могу рекомендовать её как высококлассного бизнес-аналитика. Отлично анализирует сложные задачи, предлагает практичные решения и помогает команде достигать целей. Единственный аналитик, который смог понять бизнес-запрос и реализовать для моей команды дашборд по обучению.</div>
+            </div>
+
+            <div class="rec">
+                <div class="rec-header">
+                    <div class="rec-avatar">A</div>
+                    <div>
+                        <div class="rec-name">Ainur Akhmetova</div>
+                        <div class="rec-role">Data Engineer · Bank CenterCredit</div>
+                        <div class="rec-date">January 2025 · Colleague</div>
+                    </div>
+                </div>
+                <div class="rec-text">Ерке очень ответственна, внимательна к деталям и всегда обеспечивает аккуратность и эстетичность в своей работе.</div>
+            </div>
+
         </div>
     </div>
 
