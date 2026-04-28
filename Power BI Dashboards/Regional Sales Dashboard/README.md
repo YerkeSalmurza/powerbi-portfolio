@@ -4,7 +4,7 @@ Power BI dashboard for sales analysis, customer survival, and ARPU across all 17
 
 ---
 
-## General Structure
+## 🗂️ General Structure
 
 **Report pages:** Daily Dynamic · Monthly Dynamic · Sales and Survival
 
@@ -17,7 +17,7 @@ Power BI dashboard for sales analysis, customer survival, and ARPU across all 17
 
 ---
 
-## Power Query
+## 🔄 Power Query
 
 **Data source:** Excel files — one per region (16 files) + one monthly cohort file.
 
@@ -54,13 +54,13 @@ Monthly [1]
 
 ![Power Query](screenshots/power_query.png)
 
-**Applied steps per regional table:** Source → Changed Type → Removed Columns (Column1)
+**Applied steps per regional table:** Source → Changed Type
 
-**Append:** All 16 regional tables are combined via **Append Queries (New Query)** into the single fact table `daily_sales`. Region and city names are translated to English in the source files before load.
+**Append:** All 16 regional tables are combined via **Append Queries (New Query)** into the single fact table `daily_sales`.
 
 ---
 
-## Data Model
+## 🔗 Data Model
 
 | Table | Type | Description |
 |---|---|---|
@@ -84,7 +84,7 @@ Monthly [1]
 
 ---
 
-## Table View — Schemas & Calculated Columns
+## 🗃️ Table View — Schemas & Calculated Columns
 
 ### daily_sales
 
@@ -252,9 +252,9 @@ Result
 
 ---
 
-## Report View — Pages & Measures
+## 📈 Report View — Pages & Measures
 
-### Page 1 — Daily Dynamic
+### 📅 Page 1 — Daily Dynamic
 
 Line charts: **Sales, Sales to Active %, Revenue, ARPU**
 X-axis = day number within selected month. CY (gold) vs PY (grey).
@@ -316,7 +316,7 @@ ARPU PY = DIVIDE([Revenue PY], [Sales PY])
 
 ---
 
-### Page 2 — Monthly Dynamic
+### 📆 Page 2 — Monthly Dynamic
 
 Line charts: **Sales, Sales to Active %, Revenue, ARPU, Survival 3m %, LTV 3m**
 X-axis = month (Jan–Dec). CY vs PY.
@@ -382,7 +382,7 @@ CALCULATE(
 
 ---
 
-### Page 3 — Sales and Survival
+### 🔬 Page 3 — Sales and Survival
 
 Four cohort matrix tables with conditional formatting (green → yellow → red).
 Rows = cohort period (Jan25 … Oct25 + Total). Columns = months after first sale (1m → 12m).
@@ -625,7 +625,7 @@ Paid Subs YOY % = DIVIDE([Paid Subs YOY], [Paid Subs PY], 0)
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Tool | Usage |
 |---|---|
