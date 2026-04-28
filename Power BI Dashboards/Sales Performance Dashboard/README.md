@@ -33,13 +33,16 @@ Dashboard for tracking sales plan execution and forecasting year-end performance
 ![Target Performance](screenshots/TargetPerformance.png)
 
 ### Power Query Structure
-![Power Query](screenshots/PowerQuery.png)
+![Power Query](screenshots/PQ.png)
 
 ### Data Model — Diagram View
-![Data Model](screenshots/DataModel_1.png)
+![Data Model](screenshots/DM_1.png)
 
-### Data Model — Relationships List
-![Relationships](screenshots/DataModel_2.png)
+### Data Model — Relationships List (Part 1)
+![Relationships Part 1](screenshots/DM_3.png)
+
+### Data Model — Relationships List (Part 2)
+![Relationships Part 2](screenshots/DM_2.png)
 
 ---
 
@@ -93,7 +96,13 @@ All fact and plan tables are related to `Calendar` via date fields. Divisions an
 | `KK_Sales` (CARD_OPEN_DATE) | `*`—1 | `Calendar` (Date) |
 | `KK_Sales` (SPF) | `*`—1 | `DimDivisons` (SPF) |
 | `KN_Plan` (Date) | `*`—1 | `Calendar` (Date) |
+| `KN_Plan` (Region) | `*`—1 | `DimRegion` (REGION) |
+| `KN_Sales` (DOG_FROMDATE) | `*`—1 | `Calendar` (Date) |
+| `KN_Sales` (SPF) | `*`—1 | `DimDivisons` (SPF) |
 | `ZK_Plan` (Date) | `*`—1 | `Calendar` (Date) |
+| `ZK_Plan` (Region) | `*`—1 | `DimRegion` (REGION) |
+| `ZK_Sales` (LOAN_DATE) | `*`—1 | `Calendar` (Date) |
+| `ZK_Sales` (SPF) | `*`—1 | `DimDivisons` (SPF) |
 
 ---
 
