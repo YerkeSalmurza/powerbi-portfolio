@@ -1,4 +1,4 @@
-# 📊 Sales Performance Dashboard
+# 📈 Sales Performance Dashboard
 
 Dashboard for tracking sales plan execution and forecasting year-end performance across key products, regions, and time periods.
 
@@ -6,7 +6,7 @@ Dashboard for tracking sales plan execution and forecasting year-end performance
 
 ---
 
-## Overview
+## 🗂️ Overview
 
 **Pages:**
 - **Sales Targets** — plan vs actual summary table across all products and regions
@@ -22,19 +22,33 @@ Dashboard for tracking sales plan execution and forecasting year-end performance
 - `Key Indicators by: DD-Mon-YYYY` — dynamic page title
 - Dynamic filter label — shows active filter selections
 
-### 📸 Dashboard Pages
+---
 
+## 📸 Screenshots
+
+### Sales Targets
 ![Sales Targets](screenshots/SalesTargets.png)
 
+### Target Performance
 ![Target Performance](screenshots/TargetPerformance.png)
+
+### Power Query Structure
+![Power Query](screenshots/PowerQuery.png)
+
+### Data Model — Diagram View
+![Data Model](screenshots/DataModel_1.png)
+
+### Data Model — Relationships List
+![Relationships](screenshots/DataModel_2.png)
 
 ---
 
-## Power Query — Data Sources
+## 🔄 Power Query — Data Sources
 
 All data is loaded from Excel files via Power Query. Queries are organized into groups:
 
 **Products:**
+
 | Code | Full Name |
 |---|---|
 | KK | Credit Card |
@@ -43,6 +57,7 @@ All data is loaded from Excel files via Power Query. Queries are organized into 
 | Dep | Deposits |
 
 **Dimensions [3]:**
+
 | Table | Description |
 |---|---|
 | `KPI` | Helper metric list for the matrix visual (Credit Card, Secured Loan, Cash Loan, Deposits) |
@@ -59,36 +74,30 @@ All data is loaded from Excel files via Power Query. Queries are organized into 
 
 **Other Queries [1]:** `Measure_Table` — helper table for DAX measure organization
 
-![Power Query](screenshots/PowerQuery.png)
-
 ---
 
-## Relationships
+## 🔗 Relationships
 
 All fact and plan tables are related to `Calendar` via date fields. Divisions and regions are connected through `DimDivisons` and `DimRegion` via the `SPF` and `REGION` keys. All relationships are active (many-to-one).
 
 | From | Key | To |
 |---|---|---|
 | `Calendar` (Date) | 1—1 | `holiday_calendar` (Date) |
-| `Dep_Plan` (Date) | *—1 | `Calendar` (Date) |
-| `Dep_Plan` (Region) | *—1 | `DimRegion` (REGION) |
-| `Dep_Sales` (DEP_OPENED_DATE) | *—1 | `Calendar` (Date) |
-| `Dep_Sales` (SPF) | *—1 | `DimDivisons` (SPF) |
-| `DimDivisons` (REGION) | *—1 | `DimRegion` (REGION) |
-| `KK_Plan` (Date) | *—1 | `Calendar` (Date) |
-| `KK_Plan` (Region) | *—1 | `DimRegion` (REGION) |
-| `KK_Sales` (CARD_OPEN_DATE) | *—1 | `Calendar` (Date) |
-| `KK_Sales` (SPF) | *—1 | `DimDivisons` (SPF) |
-| `KN_Plan` (Date) | *—1 | `Calendar` (Date) |
-| `ZK_Plan` (Date) | *—1 | `Calendar` (Date) |
-
-![Data Model](screenshots/DataModel_1.png)
-
-![Relationships Table](screenshots/DataModel_2.png)
+| `Dep_Plan` (Date) | `*`—1 | `Calendar` (Date) |
+| `Dep_Plan` (Region) | `*`—1 | `DimRegion` (REGION) |
+| `Dep_Sales` (DEP_OPENED_DATE) | `*`—1 | `Calendar` (Date) |
+| `Dep_Sales` (SPF) | `*`—1 | `DimDivisons` (SPF) |
+| `DimDivisons` (REGION) | `*`—1 | `DimRegion` (REGION) |
+| `KK_Plan` (Date) | `*`—1 | `Calendar` (Date) |
+| `KK_Plan` (Region) | `*`—1 | `DimRegion` (REGION) |
+| `KK_Sales` (CARD_OPEN_DATE) | `*`—1 | `Calendar` (Date) |
+| `KK_Sales` (SPF) | `*`—1 | `DimDivisons` (SPF) |
+| `KN_Plan` (Date) | `*`—1 | `Calendar` (Date) |
+| `ZK_Plan` (Date) | `*`—1 | `Calendar` (Date) |
 
 ---
 
-## Calculated Tables
+## 🗃️ Calculated Tables
 
 ```dax
 DimRegion = SUMMARIZE(DimDivisons, DimDivisons[REGION])
@@ -98,21 +107,18 @@ DimRegion = SUMMARIZE(DimDivisons, DimDivisons[REGION])
 
 ---
 
-## Calendar Table
+## 🗃️ Calendar Table
 
 ```dax
-Calendar = 
+Calendar =
 ADDCOLUMNS(
-    CALENDAR(
-        DATE(2024, 1, 1), 
-        DATE(2024, 12, 31)
-    ),
+    CALENDAR(DATE(2024, 1, 1), DATE(2024, 12, 31)),
     "Year",        YEAR([Date]),
     "Month",       FORMAT([Date], "mmm"),
     "MonthNumber", MONTH([Date]),
     "Period",      FORMAT([Date], "mmmyy"),
     "WeekDayNum",  WEEKDAY([Date], 2),
-    "WeekDay", 
+    "WeekDay",
         SWITCH(
             WEEKDAY([Date], 2),
             1, "Mon", 2, "Tue", 3, "Wed",
@@ -128,13 +134,13 @@ ADDCOLUMNS(
 **Calculated columns in Calendar:**
 
 ```dax
+Max Date = MAX(KK_Sales[CARD_OPEN_DATE])
+```
+```dax
 DateWithData = IF([Date] <= [Max Date], TRUE, FALSE)
 ```
 ```dax
 DayType = RELATED(holiday_calendar[Day Type])
-```
-```dax
-Max Date = MAX(KK_Sales[CARD_OPEN_DATE])
 ```
 ```dax
 MaxDate = "Data as of: " & FORMAT(MAX(KK_Sales[CARD_OPEN_DATE]), "dd-mmm-yyyy")
@@ -143,7 +149,7 @@ MaxDate = "Data as of: " & FORMAT(MAX(KK_Sales[CARD_OPEN_DATE]), "dd-mmm-yyyy")
 Title = "Key Indicators by: " & FORMAT(MAX(KK_Sales[CARD_OPEN_DATE]), "dd-mmm-yyyy")
 ```
 ```dax
-Work Day Flag = 
+Work Day Flag =
 IF(
     'Calendar'[DayType] = "Workday" && 'Calendar'[WeekDay] = "Sat", 0.25,
     IF('Calendar'[DayType] = "Workday", 1, 0)
@@ -154,7 +160,7 @@ IF(
 
 ---
 
-## Measures
+## 📈 Measures
 
 ### 🗓️ Working Days
 
@@ -162,7 +168,7 @@ IF(
 Work Days Count = SUM('Calendar'[Work Day Flag])
 ```
 ```dax
-Work Days Passed = 
+Work Days Passed =
 VAR Yesterday = TODAY() - 1
 RETURN
 CALCULATE(
@@ -195,14 +201,14 @@ Remaining Work Days = [Work Days Count] - [Work Days Passed]
 4. KK Plan Execution, % = DIVIDE([2. KK Sales], [1. KK Plan], 0)
 ```
 ```dax
-5. KK Sales Forecast, % = 
+5. KK Sales Forecast, % =
 IF(
     [Work Days Passed] = 0, BLANK(),
     [2. KK Sales] / [Work Days Passed] * ([Work Days Count] / [1. KK Plan])
 )
 ```
 ```dax
-6. KK Sales Forecast = 
+6. KK Sales Forecast =
 IF([5. KK Sales Forecast, %] = BLANK(), BLANK(), [1. KK Plan] * [5. KK Sales Forecast, %])
 ```
 ```dax
@@ -226,12 +232,12 @@ KK Plan MAX = SUM(KK_Plan[KK_Plan]) * 1.25
 4. ZK Plan Execution, % = DIVIDE([2. ZK Sales], [1. ZK Plan], 0)
 ```
 ```dax
-5. ZK Sales Forecast, % = 
-IF([Work Days Passed] = 0, BLANK(), 
+5. ZK Sales Forecast, % =
+IF([Work Days Passed] = 0, BLANK(),
     [2. ZK Sales] / [Work Days Passed] * ([Work Days Count] / [1. ZK Plan]))
 ```
 ```dax
-6. ZK Sales Forecast = 
+6. ZK Sales Forecast =
 IF([5. ZK Sales Forecast, %] = BLANK(), BLANK(), [1. ZK Plan] * [5. ZK Sales Forecast, %])
 ```
 ```dax
@@ -255,12 +261,12 @@ ZK Plan MAX = SUM(ZK_Plan[ZK_Plan]) * 1.25
 4. KN Plan Execution, % = DIVIDE([2. KN Sales], [1. KN Plan], 0)
 ```
 ```dax
-5. KN Sales Forecast, % = 
-IF([Work Days Passed] = 0, BLANK(), 
+5. KN Sales Forecast, % =
+IF([Work Days Passed] = 0, BLANK(),
     [2. KN Sales] / [Work Days Passed] * ([Work Days Count] / [1. KN Plan]))
 ```
 ```dax
-6. KN Sales Forecast = 
+6. KN Sales Forecast =
 IF([5. KN Sales Forecast, %] = BLANK(), BLANK(), [1. KN Plan] * [5. KN Sales Forecast, %])
 ```
 ```dax
@@ -284,14 +290,14 @@ KN Plan MAX = SUM(KN_Plan[KN_Plan]) * 1.25
 4. Dep Plan Execution, % = DIVIDE([2. Dep Sales], [1. Dep Plan], 0)
 ```
 ```dax
-5. Dep Sales Forecast, % = 
+5. Dep Sales Forecast, % =
 IF(
     [Work Days Passed] = 0, BLANK(),
     [2. Dep Sales] / [Work Days Passed] * ([Work Days Count] / [1. Dep Plan])
 )
 ```
 ```dax
-6. Dep Sales Forecast = 
+6. Dep Sales Forecast =
 IF([5. Dep Sales Forecast, %] = BLANK(), BLANK(), [1. Dep Plan] * [5. Dep Sales Forecast, %])
 ```
 ```dax
@@ -305,7 +311,7 @@ Dep Plan Max = SUM(Dep_Plan[Dep_Plan]) * 1.25
 Measures switch dynamically based on the `KPI[Order]` value via `SELECTEDVALUE`, allowing a single matrix visual to display all products simultaneously.
 
 ```dax
-1. KPI Plan = 
+1. KPI Plan =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -317,7 +323,7 @@ CALCULATE(
     ))
 ```
 ```dax
-2. KPI Fact = 
+2. KPI Fact =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -329,7 +335,7 @@ CALCULATE(
     ))
 ```
 ```dax
-4. KPI Plan Execution = 
+4. KPI Plan Execution =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -341,7 +347,7 @@ CALCULATE(
     ))
 ```
 ```dax
-5. KPI Plan Execution, % = 
+5. KPI Plan Execution, % =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -353,7 +359,7 @@ CALCULATE(
     ))
 ```
 ```dax
-6. KPI Forecast, % = 
+6. KPI Forecast, % =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -365,7 +371,7 @@ CALCULATE(
     ))
 ```
 ```dax
-7. KPI Forecast = 
+7. KPI Forecast =
 VAR A = SELECTEDVALUE('KPI'[Order])
 RETURN
 CALCULATE(
@@ -382,7 +388,7 @@ CALCULATE(
 ### 🎨 Conditional Formatting (Color)
 
 ```dax
-KPI Plan Execution Colour FX = 
+KPI Plan Execution Colour FX =
 VAR PlEx = [4. KPI Plan Execution]
 RETURN
 IF(
@@ -392,10 +398,10 @@ IF(
 )
 ```
 
-> Negative deviation from plan — red; positive — green.
+> Negative deviation from plan — red `#DE6A73`; positive — green `#35AE78`.
 
 ```dax
-KPI Plan Execution Colour, % FX = 
+KPI Plan Execution Colour, % FX =
 VAR PlEx = [5. KPI Plan Execution, %]
 RETURN
 IF(
@@ -406,7 +412,7 @@ IF(
 )
 ```
 ```dax
-KPI Forecast Colour, % = 
+KPI Forecast Colour, % =
 VAR PlEx = [6. KPI Forecast, %]
 RETURN
 IF(
@@ -424,7 +430,7 @@ IF(
 ### 🏷️ Dynamic Labels
 
 ```dax
-FilterLabelCombined = 
+FilterLabelCombined =
 VAR SelectedPeriod  = SELECTEDVALUE('Calendar'[Period],  "All months")
 VAR SelectedQuarter = SELECTEDVALUE('Calendar'[Quarter], "All quarters")
 VAR SelectedRegion  = SELECTEDVALUE('DimRegion'[Region], "All regions")
@@ -439,4 +445,15 @@ IF(
 )
 ```
 
-> The label dynamically reflects active filters. If nothing is selected, it displays "all periods, all quarters, all regions".
+> Dynamically reflects active filters. If nothing is selected, displays "all periods, all quarters, all regions".
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool | Usage |
+|---|---|
+| Power BI Desktop | Report building, data model |
+| Power Query (M) | Data load, type casting |
+| DAX | Calendar, calculated columns, measures, color FX |
+| Excel | Source data files (plan + sales per product) |
