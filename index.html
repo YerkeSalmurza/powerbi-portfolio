@@ -5,139 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yerke Salmurza | Power BI Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #181c26;
-      --surface2: #1e2333;
-      --border: #262d40;
-      --accent: #4f8ef7;
-      --accent2: #7eb8ff;
-      --text: #e8eaf0;
-      --muted: #7a8099;
-      --green: #3ecf8e;
-      --tag-bg: #1a2038;
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --surface2: #1c2330;
+      --border:   #2a3347;
+      --accent:   #e8b84b;
+      --accent2:  #f5d07a;
+      --text:     #e6edf3;
+      --muted:    #7d8590;
+      --green:    #3fb950;
+      --tag-bg:   #1a2233;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
       min-height: 100vh;
     }
 
-    /* ── Layout ─────────────────────────────── */
-    .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── Hero ───────────────────────────────── */
+    /* ── Hero ── */
     .hero {
-      padding: 72px 0 56px;
+      padding: 72px 0 52px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 20px;
+      gap: 18px;
     }
     .hero-photo {
-      width: 100px;
-      height: 100px;
+      width: 96px; height: 96px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--border);
-      box-shadow: 0 0 0 4px var(--surface2);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(232,184,75,0.15);
     }
     .hero-name {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 600;
       letter-spacing: -0.02em;
-      color: var(--text);
     }
     .hero-title {
-      font-size: 1rem;
-      color: var(--accent2);
-      font-weight: 400;
-      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-size: 0.85rem;
     }
-    .hero-location {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .hero-location { color: var(--muted); font-size: 0.88rem; }
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 4px;
+      display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
     }
     .tag {
       background: var(--tag-bg);
       border: 1px solid var(--border);
       color: var(--accent2);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      padding: 4px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.03em;
     }
     .hero-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
     }
-    .hero-links a {
+    .hero-links a, .hero-email {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.88rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-size: 0.86rem;
       transition: color 0.2s;
     }
     .hero-links a:hover { color: var(--accent2); }
-    .hero-email {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
 
-    /* ── Divider ────────────────────────────── */
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
-    /* ── Section ────────────────────────────── */
-    section { padding: 48px 0; }
+    /* ── Divider / Section ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+    section { padding: 44px 0; }
     section + section { border-top: 1px solid var(--border); }
     .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 20px;
     }
-    .section-text {
-      color: #b0b8cc;
-      font-size: 0.95rem;
-      line-height: 1.75;
-    }
+    .section-text { color: #b0bac8; font-size: 0.94rem; line-height: 1.75; }
 
-    /* ── Certs ──────────────────────────────── */
-    .cert-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    /* ── Certs ── */
+    .cert-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
     .cert-list li {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      font-size: 0.9rem;
+      display: flex; align-items: baseline; gap: 9px; font-size: 0.88rem;
     }
-    .cert-list li span.icon { font-size: 0.85rem; flex-shrink: 0; }
+    .cert-list li .icon { flex-shrink: 0; }
     .cert-list li a {
       color: var(--text);
       text-decoration: none;
@@ -145,128 +110,118 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .cert-list li a:hover { color: var(--accent2); border-bottom-color: var(--accent2); }
+    .cert-list li span.plain { color: var(--text); }
     .cert-list li .year {
       margin-left: auto;
       color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
       white-space: nowrap;
     }
 
-    /* ── Recommendations ────────────────────── */
-    .rec-grid { display: flex; flex-direction: column; gap: 16px; }
+    /* ── Recommendations ── */
+    .rec-grid { display: flex; flex-direction: column; gap: 14px; }
     .rec-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 20px 22px;
     }
-    .rec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .rec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 11px; }
     .rec-avatar {
-      width: 36px;
-      height: 36px;
+      width: 34px; height: 34px;
       border-radius: 50%;
       background: var(--surface2);
       border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent);
       flex-shrink: 0;
     }
-    .rec-meta { flex: 1; }
-    .rec-name { font-weight: 600; font-size: 0.92rem; color: var(--text); }
-    .rec-role { font-size: 0.78rem; color: var(--muted); }
-    .rec-date { font-size: 0.75rem; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
-    .rec-text { font-size: 0.88rem; color: #a8b0c8; line-height: 1.7; }
+    .rec-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .rec-role { font-size: 0.76rem; color: var(--muted); }
+    .rec-date { font-size: 0.72rem; color: var(--muted); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+    .rec-text { font-size: 0.86rem; color: #9ba5b5; line-height: 1.72; }
 
-    /* ── Projects ───────────────────────────── */
-    .project-list { display: flex; flex-direction: column; gap: 24px; }
+    /* ── Projects ── */
+    .project-list { display: flex; flex-direction: column; gap: 20px; }
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
+      border-radius: 10px;
+      padding: 22px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .project-card:hover {
-      border-color: #3a4460;
-      box-shadow: 0 4px 24px rgba(79,142,247,0.06);
+      border-color: rgba(232,184,75,0.4);
+      box-shadow: 0 4px 20px rgba(232,184,75,0.06);
     }
-    .project-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-    .project-desc { font-size: 0.88rem; color: #8a93aa; line-height: 1.7; margin-bottom: 16px; }
-    .project-links { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .project-title { font-size: 1rem; font-weight: 600; color: var(--text); }
+    .project-badge {
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-course { background: rgba(232,184,75,0.12); color: var(--accent); border: 1px solid rgba(232,184,75,0.25); }
+    .badge-test   { background: rgba(63,185,80,0.1);  color: var(--green);  border: 1px solid rgba(63,185,80,0.25); }
+    .project-desc { font-size: 0.86rem; color: #8a95a8; line-height: 1.7; margin-bottom: 14px; }
+    .project-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
     .btn-ghost {
-      font-size: 0.8rem;
-      color: var(--muted);
+      font-size: 0.78rem; color: var(--muted);
       text-decoration: none;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 5px 12px;
+      border-radius: 6px; padding: 5px 11px;
       transition: color 0.2s, border-color 0.2s;
-      font-family: 'DM Sans', sans-serif;
     }
     .btn-ghost:hover { color: var(--accent2); border-color: var(--accent2); }
     .btn-accent {
-      font-size: 0.8rem;
-      color: var(--accent);
+      font-size: 0.78rem; color: var(--accent);
       text-decoration: none;
-      border: 1px solid rgba(79,142,247,0.3);
-      border-radius: 6px;
-      padding: 5px 12px;
-      transition: background 0.2s, color 0.2s;
-      font-family: 'DM Sans', sans-serif;
-      background: rgba(79,142,247,0.06);
+      border: 1px solid rgba(232,184,75,0.3);
+      border-radius: 6px; padding: 5px 11px;
+      background: rgba(232,184,75,0.07);
+      transition: background 0.2s;
     }
-    .btn-accent:hover { background: rgba(79,142,247,0.14); }
-    .project-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .btn-accent:hover { background: rgba(232,184,75,0.14); }
+    .project-note { font-size: 0.75rem; color: var(--muted); margin-bottom: 12px; }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .stack-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      padding: 3px 9px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.67rem; padding: 2px 8px;
       border-radius: 4px;
       background: var(--tag-bg);
       border: 1px solid var(--border);
       color: var(--muted);
     }
 
-    /* ── Footer ─────────────────────────────── */
+    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 28px 0;
+      padding: 26px 0;
       text-align: center;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: flex; flex-direction: column; gap: 8px;
     }
     footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--accent2); }
-    footer .footer-links { display: flex; gap: 16px; justify-content: center; }
+    .footer-links { display: flex; gap: 16px; justify-content: center; }
 
     @media (max-width: 600px) {
-      .hero { padding: 48px 0 40px; }
-      .hero-name { font-size: 1.6rem; }
-      .project-card { padding: 18px; }
+      .hero { padding: 48px 0 36px; }
+      .hero-name { font-size: 1.55rem; }
+      .project-card { padding: 16px; }
     }
   </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- ── Hero ──────────────────────────── -->
+  <!-- Hero -->
   <div class="hero">
     <img src="assets/Ретушь1.jpg" alt="Yerke Salmurza" class="hero-photo" />
     <div>
@@ -293,26 +248,34 @@
 
   <hr />
 
-  <!-- ── About ─────────────────────────── -->
+  <!-- About -->
   <section>
     <div class="section-label">👤 About Me</div>
     <p class="section-text">
-      BI Developer / Engineer with 5+ years of experience in fintech and telecom.
+      BI Analyst / Developer with 5+ years of experience in fintech and telecom.
       I specialize in Power BI development, data modeling, and SQL — building dashboards
       and automated reports that help business teams make faster decisions.
     </p>
   </section>
 
-  <!-- ── Certifications ────────────────── -->
+  <!-- Certifications -->
   <section>
     <div class="section-label">📜 Certifications</div>
     <ul class="cert-list">
       <li>
+        <span class="icon">🔄</span>
+        <span class="plain">Data Engineer Course — In progress</span>
+        <span class="year"></span>
+      </li>
+      <li>
         <span class="icon">✅</span>
-        <a href="https://learn.microsoft.com/en-us/users/yerkesalmurza/credentials/certification/data-analyst-associate?tab=credentials-tab" target="_blank">
-          Power BI Data Analyst Associate — Microsoft Certified
-        </a>
-        <span class="year">2021</span>
+        <span class="plain">Product Masters: Data Analyst</span>
+        <span class="year">2024</span>
+      </li>
+      <li>
+        <span class="icon">✅</span>
+        <span class="plain">DataBoom: Microsoft Office Excel</span>
+        <span class="year">2022</span>
       </li>
       <li>
         <span class="icon">✅</span>
@@ -323,33 +286,25 @@
       </li>
       <li>
         <span class="icon">✅</span>
-        <a href="#">Product Masters: Data Analyst</a>
-        <span class="year">2024</span>
-      </li>
-      <li>
-        <span class="icon">🔄</span>
-        <a href="#">Data Engineer Course — In progress</a>
-        <span class="year"></span>
-      </li>
-      <li>
-        <span class="icon">✅</span>
-        <a href="#">DataBoom: Data Analysis and Visualization with Microsoft Power BI</a>
-        <span class="year">2020</span>
-      </li>
-      <li>
-        <span class="icon">✅</span>
-        <a href="#">DataBoom: SQL Fundamentals for Data Analytics</a>
+        <a href="https://learn.microsoft.com/en-us/users/yerkesalmurza/credentials/certification/data-analyst-associate?tab=credentials-tab" target="_blank">
+          Power BI Data Analyst Associate — Microsoft Certified
+        </a>
         <span class="year">2021</span>
       </li>
       <li>
         <span class="icon">✅</span>
-        <a href="#">DataBoom: Microsoft Office Excel</a>
-        <span class="year">2022</span>
+        <span class="plain">DataBoom: SQL Fundamentals for Data Analytics</span>
+        <span class="year">2021</span>
+      </li>
+      <li>
+        <span class="icon">✅</span>
+        <span class="plain">DataBoom: Data Analysis and Visualization with Microsoft Power BI</span>
+        <span class="year">2020</span>
       </li>
     </ul>
   </section>
 
-  <!-- ── Recommendations ───────────────── -->
+  <!-- Recommendations -->
   <section>
     <div class="section-label">💬 Recommendations</div>
     <div class="rec-grid">
@@ -357,7 +312,7 @@
       <div class="rec-card">
         <div class="rec-header">
           <div class="rec-avatar">G</div>
-          <div class="rec-meta">
+          <div>
             <div class="rec-name">Giorgi Okrojanashvili</div>
             <div class="rec-role">Head of BI at Space Int · TBC UZ · Payme UZ</div>
             <div class="rec-date">March 2026 · Direct manager</div>
@@ -375,7 +330,7 @@
       <div class="rec-card">
         <div class="rec-header">
           <div class="rec-avatar">N</div>
-          <div class="rec-meta">
+          <div>
             <div class="rec-name">Nikoloz Kalichava</div>
             <div class="rec-role">Power BI Developer · TBC Group</div>
             <div class="rec-date">March 2026 · Colleague</div>
@@ -392,7 +347,7 @@
       <div class="rec-card">
         <div class="rec-header">
           <div class="rec-avatar">Д</div>
-          <div class="rec-meta">
+          <div>
             <div class="rec-name">Дастан Мусаханов</div>
             <div class="rec-role">Head of L&amp;D · Bank CenterCredit</div>
             <div class="rec-date">January 2025 · Colleague</div>
@@ -409,7 +364,7 @@
       <div class="rec-card">
         <div class="rec-header">
           <div class="rec-avatar">A</div>
-          <div class="rec-meta">
+          <div>
             <div class="rec-name">Ainur Akhmetova</div>
             <div class="rec-role">Data Engineer · Bank CenterCredit</div>
             <div class="rec-date">January 2025 · Colleague</div>
@@ -424,14 +379,16 @@
     </div>
   </section>
 
-  <!-- ── Projects ──────────────────────── -->
+  <!-- Projects -->
   <section>
     <div class="section-label">📊 Projects</div>
     <div class="project-list">
 
       <!-- KPI Sales Tracker -->
       <div class="project-card">
-        <div class="project-title">📊 KPI Sales Tracker Dashboard</div>
+        <div class="project-header">
+          <div class="project-title">📊 KPI Sales Tracker Dashboard</div>
+        </div>
         <p class="project-desc">
           Track sales plan execution across regions and months, and forecast the final
           year-end performance based on actual results and working days passed.
@@ -440,7 +397,7 @@
           <a class="btn-ghost" href="https://github.com/YerkeSalmurza/portfolio/tree/main/Power%20BI%20Dashboards/KPI%20Sales%20Tracker%20Dashboard" target="_blank">→ GitHub</a>
           <a class="btn-accent" href="https://app.powerbi.com/view?r=eyJrIjoiYjU0MjdiYWYtZTUxMy00NGFlLWJkNmQtOTcwZjhmNGI5NGVmIiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9" target="_blank">📊 Live Dashboard</a>
         </div>
-        <div class="project-note">🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.</div>
+        <div class="project-note">🔒 Synthetic dataset based on real business logic.</div>
         <div class="stack-tags">
           <span class="stack-tag">Power BI</span>
           <span class="stack-tag">DAX</span>
@@ -450,9 +407,11 @@
         </div>
       </div>
 
-      <!-- Sales Performance Dashboard -->
+      <!-- Sales Performance -->
       <div class="project-card">
-        <div class="project-title">📈 Sales Performance Dashboard</div>
+        <div class="project-header">
+          <div class="project-title">📈 Sales Performance Dashboard</div>
+        </div>
         <p class="project-desc">
           Dashboard for tracking sales plan execution and forecasting year-end performance
           across 4 products (Credit Card, Secured Loan, Cash Loan, Deposits) by region and
@@ -463,7 +422,7 @@
           <a class="btn-ghost" href="https://github.com/YerkeSalmurza/portfolio/tree/main/Power%20BI%20Dashboards/Sales%20Performance%20Dashboard" target="_blank">→ GitHub</a>
           <a class="btn-accent" href="https://app.powerbi.com/view?r=eyJrIjoiNDAzYWFmM2EtZjQzOC00OWUyLWE1ZGYtYzRlYzkzZjg4NDAyIiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9" target="_blank">📊 Live Dashboard</a>
         </div>
-        <div class="project-note">🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.</div>
+        <div class="project-note">🔒 Synthetic dataset based on real business logic.</div>
         <div class="stack-tags">
           <span class="stack-tag">Power BI</span>
           <span class="stack-tag">DAX</span>
@@ -473,9 +432,11 @@
         </div>
       </div>
 
-      <!-- Regional Sales Dashboard -->
+      <!-- Regional Sales -->
       <div class="project-card">
-        <div class="project-title">🗺️ Regional Sales Dashboard</div>
+        <div class="project-header">
+          <div class="project-title">🗺️ Regional Sales Dashboard</div>
+        </div>
         <p class="project-desc">
           Sales analysis dashboard covering all 17 regions and key cities of Kazakhstan.
           Tracks daily and monthly dynamics for Sales, Revenue, ARPU, and Sales-to-Active %,
@@ -485,7 +446,7 @@
           <a class="btn-ghost" href="https://github.com/YerkeSalmurza/portfolio/tree/main/Power%20BI%20Dashboards/Regional%20Sales%20Dashboard" target="_blank">→ GitHub</a>
           <a class="btn-accent" href="https://app.powerbi.com/reportEmbed?reportId=ff0813e1-8854-4197-a857-79e90619aa2d&autoAuth=true&ctid=dccaf2c7-b668-4b0e-a384-f24f514233bb" target="_blank">📊 Live Dashboard</a>
         </div>
-        <div class="project-note">🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.</div>
+        <div class="project-note">🔒 Synthetic dataset based on real business logic.</div>
         <div class="stack-tags">
           <span class="stack-tag">Power BI</span>
           <span class="stack-tag">DAX</span>
@@ -495,10 +456,60 @@
         </div>
       </div>
 
+      <!-- Clinic Analytics -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">🏥 Clinic Analytics Dashboard</div>
+          <span class="project-badge badge-test">Test Task</span>
+        </div>
+        <p class="project-desc">
+          Analytics dashboard for Atlas Medical Center (PROTEK Group). Covers employee health
+          program usage, deposit placement efficiency, and complex program sales with conversion
+          tracking. Built as a test assignment during a job application process.
+        </p>
+        <div class="project-links">
+          <a class="btn-ghost" href="https://github.com/YerkeSalmurza/portfolio/tree/main/Power%20BI%20Dashboards/Clinic%20Analytics%20Dashboard" target="_blank">→ GitHub</a>
+          <a class="btn-accent" href="https://app.powerbi.com/view?r=eyJrIjoiZGQ4NTU0ZmQtMTE5Ni00YWZhLWEwOGYtMmViZTBkYTQ2YmI2IiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9" target="_blank">📊 Live Dashboard</a>
+        </div>
+        <div class="project-note">🔒 Synthetic dataset based on real business logic.</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">DAX</span>
+          <span class="stack-tag">Power Query</span>
+          <span class="stack-tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <!-- Airline Analytics -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">✈️ Airline Analytics Dashboard</div>
+          <span class="project-badge badge-course">Product Masters</span>
+        </div>
+        <p class="project-desc">
+          Comprehensive airline monitoring dashboard built on a PostgreSQL bookings database.
+          Covers 5 pages: general KPIs, customer segmentation with export for outreach,
+          aircraft fleet analysis with load factor and business-class efficiency,
+          route profitability, and flight status tracking. Data sourced via materialized views.
+        </p>
+        <div class="project-links">
+          <a class="btn-ghost" href="https://github.com/YerkeSalmurza/portfolio/tree/main/Power%20BI%20Dashboards/%D0%94%D0%B0%D1%88%D0%B1%D0%BE%D1%80%D0%B4%20%D0%B4%D0%BB%D1%8F%20%D0%B0%D0%B2%D0%B8%D0%B0%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8" target="_blank">→ GitHub</a>
+          <a class="btn-accent" href="https://app.powerbi.com/view?r=eyJrIjoiNGNjNTI2ZTItOWYwNS00YzRmLWEyODktODY0MzA2ZjdmNTMyIiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9" target="_blank">📊 Live Dashboard</a>
+        </div>
+        <div class="project-note">🔒 Synthetic dataset based on real business logic.</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">DAX</span>
+          <span class="stack-tag">Power Query</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">Materialized Views</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ── Footer ────────────────────────── -->
+  <!-- Footer -->
   <footer>
     <div>© 2026 Yerke Salmurza</div>
     <div class="footer-links">
