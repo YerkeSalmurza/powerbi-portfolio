@@ -1,0 +1,75 @@
+-- bookings.routes_mv исходный текст
+
+CREATE MATERIALIZED VIEW bookings.routes_mv
+TABLESPACE pg_default
+AS WITH seat_stats AS (
+         SELECT seats.aircraft_code,
+            sum(
+                CASE
+                    WHEN lower(seats.fare_conditions::text) = 'business'::text THEN 1
+                    ELSE 0
+                END) AS biz_seats
+           FROM bookings.seats
+          GROUP BY seats.aircraft_code
+        ), flights_base AS (
+         SELECT f.flight_id,
+            f.departure_airport,
+            f.arrival_airport,
+            f.aircraft_code,
+            a.model,
+            s.biz_seats
+           FROM bookings.flights f
+             LEFT JOIN seat_stats s ON f.aircraft_code = s.aircraft_code
+             LEFT JOIN bookings.aircrafts a ON f.aircraft_code = a.aircraft_code
+        ), flights_agg AS (
+         SELECT fb.departure_airport,
+            fb.arrival_airport,
+            fb.model,
+            count(DISTINCT fb.flight_id) AS flight_cnt,
+            sum(
+                CASE
+                    WHEN fb.biz_seats > 0 THEN 1
+                    ELSE 0
+                END) AS flights_with_biz,
+            max(fb.biz_seats) AS has_biz_class_flag
+           FROM flights_base fb
+          GROUP BY fb.departure_airport, fb.arrival_airport, fb.model
+        ), revenue_agg AS (
+         SELECT f.departure_airport,
+            f.arrival_airport,
+            a.model,
+            sum(tf.amount) AS revenue,
+            count(DISTINCT tf.ticket_no) AS ticket_cnt,
+            count(DISTINCT t.passenger_id) AS passenger_cnt,
+            sum(
+                CASE
+                    WHEN lower(tf.fare_conditions::text) = 'business'::text AND tf.amount > 0::numeric THEN 1
+                    ELSE 0
+                END) AS biz_sold
+           FROM bookings.flights f
+             JOIN bookings.ticket_flights tf ON f.flight_id = tf.flight_id
+             JOIN bookings.tickets t ON tf.ticket_no = t.ticket_no
+             LEFT JOIN bookings.aircrafts a ON f.aircraft_code = a.aircraft_code
+          GROUP BY f.departure_airport, f.arrival_airport, a.model
+        ), airports AS (
+         SELECT airports.airport_code,
+            airports.city
+           FROM bookings.airports
+        )
+ SELECT concat(dep.city, ' - ', arr.city) AS route_name,
+    fa.model,
+    COALESCE(fa.flight_cnt, 0::bigint) AS flight_cnt,
+    COALESCE(ra.revenue, 0::numeric) AS revenue,
+        CASE
+            WHEN fa.has_biz_class_flag > 0 THEN 'Да'::text
+            ELSE 'Нет'::text
+        END AS has_biz_class,
+        CASE
+            WHEN COALESCE(ra.biz_sold, 0::bigint) = 0 AND COALESCE(fa.flights_with_biz, 0::bigint) > 0 THEN 'Не используется'::text
+            ELSE 'Используются'::text
+        END AS biz_class_unused
+   FROM flights_agg fa
+     LEFT JOIN revenue_agg ra ON fa.departure_airport = ra.departure_airport AND fa.arrival_airport = ra.arrival_airport AND fa.model = ra.model
+     LEFT JOIN airports dep ON fa.departure_airport = dep.airport_code
+     LEFT JOIN airports arr ON fa.arrival_airport = arr.airport_code
+WITH DATA;
