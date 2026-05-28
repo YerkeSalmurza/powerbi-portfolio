@@ -1,0 +1,54 @@
+-- bookings.aircrafts_mv исходный текст
+
+CREATE MATERIALIZED VIEW bookings.aircrafts_mv
+TABLESPACE pg_default
+AS WITH seat_stats AS (
+         SELECT seats.aircraft_code,
+            count(*) AS seat_cap,
+            sum(
+                CASE
+                    WHEN seats.fare_conditions::text = 'Business'::text THEN 1
+                    ELSE 0
+                END) AS biz_seats
+           FROM bookings.seats
+          GROUP BY seats.aircraft_code
+        ), avg_biz_ratio AS (
+         SELECT avg(seat_stats.biz_seats::numeric / NULLIF(seat_stats.seat_cap, 0)::numeric) AS avg_ratio
+           FROM seat_stats
+        ), flight_stats AS (
+         SELECT flights.aircraft_code,
+            count(*) AS flight_cnt
+           FROM bookings.flights
+          GROUP BY flights.aircraft_code
+        ), ticket_stats AS (
+         SELECT f_1.aircraft_code,
+            count(tf.ticket_no) AS ticket_cnt,
+            sum(tf.amount) AS revenue,
+            avg(tf.amount) AS avg_price
+           FROM bookings.flights f_1
+             JOIN bookings.ticket_flights tf ON f_1.flight_id = tf.flight_id
+          GROUP BY f_1.aircraft_code
+        )
+ SELECT a.model,
+    COALESCE(s.seat_cap, 0::bigint) AS seat_cap,
+    COALESCE(s.biz_seats, 0::bigint) AS biz_seats,
+    round(COALESCE(s.biz_seats::numeric / NULLIF(s.seat_cap, 0)::numeric, 0::numeric), 2) AS biz_share,
+    COALESCE(f.flight_cnt, 0::bigint) AS flight_cnt,
+    COALESCE(t.ticket_cnt, 0::bigint) AS ticket_cnt,
+    COALESCE(t.revenue, 0::numeric) AS revenue,
+    COALESCE(t.avg_price, 0::numeric) AS avg_price,
+        CASE
+            WHEN f.flight_cnt IS NULL OR s.seat_cap = 0 THEN 0::numeric
+            ELSE round(t.ticket_cnt::numeric / (f.flight_cnt * s.seat_cap)::numeric, 2)
+        END AS load_factor,
+        CASE
+            WHEN s.seat_cap = 0 THEN 'Standard'::text
+            WHEN (s.biz_seats::numeric / s.seat_cap::numeric) > avg.avg_ratio THEN 'Premium'::text
+            ELSE 'Standard'::text
+        END AS type
+   FROM bookings.aircrafts a
+     LEFT JOIN seat_stats s ON a.aircraft_code = s.aircraft_code
+     LEFT JOIN flight_stats f ON a.aircraft_code = f.aircraft_code
+     LEFT JOIN ticket_stats t ON a.aircraft_code = t.aircraft_code
+     LEFT JOIN avg_biz_ratio avg ON true
+WITH DATA;

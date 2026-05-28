@@ -1,0 +1,11 @@
+-- bookings.dimclients исходный текст
+
+CREATE MATERIALIZED VIEW bookings.dimclients
+TABLESPACE pg_default
+AS SELECT passenger_id,
+    passenger_name,
+    contact_data ->> 'phone'::text AS phone_number,
+    contact_data ->> 'email'::text AS email
+   FROM bookings.tickets t
+  GROUP BY passenger_id, passenger_name, contact_data
+WITH DATA;
