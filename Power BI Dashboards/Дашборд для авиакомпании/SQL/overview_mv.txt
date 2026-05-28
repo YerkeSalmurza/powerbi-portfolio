@@ -1,0 +1,15 @@
+-- bookings.overview_mv исходный текст
+
+CREATE MATERIALIZED VIEW bookings.overview_mv
+TABLESPACE pg_default
+AS SELECT date_trunc('month'::text, f.scheduled_departure)::date AS flight_date,
+    f.departure_airport,
+    t.passenger_id,
+    tf.ticket_no,
+    tf.amount AS revenue,
+    count(DISTINCT tf.flight_id) AS flight_cnt
+   FROM bookings.flights f
+     LEFT JOIN bookings.ticket_flights tf ON f.flight_id = tf.flight_id
+     LEFT JOIN bookings.tickets t ON tf.ticket_no = t.ticket_no
+  GROUP BY (date_trunc('month'::text, f.scheduled_departure)::date), f.departure_airport, t.passenger_id, tf.ticket_no, tf.amount
+WITH DATA;

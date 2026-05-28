@@ -1,0 +1,69 @@
+-- bookings.passengers_mv исходный текст
+
+CREATE MATERIALIZED VIEW bookings.passengers_mv
+TABLESPACE pg_default
+AS WITH passengers AS (
+         SELECT t.passenger_id,
+            count(DISTINCT tf.ticket_no) AS tickets_cnt,
+            count(DISTINCT tf.flight_id) AS flight_cnt,
+            sum(tf.amount) AS flight_amt
+           FROM bookings.tickets t
+             JOIN bookings.ticket_flights tf ON tf.ticket_no = t.ticket_no
+          GROUP BY t.passenger_id
+        ), preferred_direction AS (
+         SELECT r.passenger_id,
+            concat(dep.city, ' - ', arr.city) AS preferred_direction
+           FROM ( SELECT t.passenger_id,
+                    f_1.departure_airport,
+                    f_1.arrival_airport,
+                    count(*) AS route_cnt,
+                    row_number() OVER (PARTITION BY t.passenger_id ORDER BY (count(*)) DESC) AS rn
+                   FROM bookings.tickets t
+                     JOIN bookings.ticket_flights tf ON tf.ticket_no = t.ticket_no
+                     JOIN bookings.flights f_1 ON f_1.flight_id = tf.flight_id
+                  GROUP BY t.passenger_id, f_1.departure_airport, f_1.arrival_airport) r
+             JOIN bookings.airports dep ON r.departure_airport = dep.airport_code
+             JOIN bookings.airports arr ON r.arrival_airport = arr.airport_code
+          WHERE r.rn = 1
+        ), preferred_conditions AS (
+         SELECT e.passenger_id,
+            e.fare_conditions AS preferred_conditions
+           FROM ( SELECT t.passenger_id,
+                    tf.fare_conditions,
+                    count(*) AS conditions_count,
+                    row_number() OVER (PARTITION BY t.passenger_id ORDER BY (count(*)) DESC) AS rn
+                   FROM bookings.tickets t
+                     JOIN bookings.ticket_flights tf ON t.ticket_no = tf.ticket_no
+                  GROUP BY t.passenger_id, tf.fare_conditions) e
+          WHERE e.rn = 1
+        ), preferred_airport AS (
+         SELECT c.passenger_id,
+            c.airport_code AS preffered_airport
+           FROM ( SELECT t_1.passenger_id,
+                    a.airport_code,
+                    count(*) AS flight_count,
+                    row_number() OVER (PARTITION BY t_1.passenger_id ORDER BY (count(*)) DESC) AS rn
+                   FROM bookings.tickets t_1
+                     JOIN bookings.ticket_flights tf_1 ON t_1.ticket_no = tf_1.ticket_no
+                     JOIN bookings.flights f_1 ON tf_1.flight_id = f_1.flight_id
+                     JOIN bookings.airports a ON f_1.departure_airport = a.airport_code
+                  GROUP BY t_1.passenger_id, a.airport_code) c
+          WHERE c.rn = 1
+        )
+ SELECT p.passenger_id,
+    pd.preferred_direction,
+    pc.preferred_conditions,
+    pa.preffered_airport,
+    p.tickets_cnt,
+    p.flight_cnt,
+    p.flight_amt,
+        CASE
+            WHEN p.flight_amt >= 100000::numeric THEN 'High Spender'::text
+            WHEN p.flight_amt >= 50000::numeric THEN 'Medium Spender'::text
+            ELSE 'Low Spender'::text
+        END AS spending_segment
+   FROM passengers p
+     LEFT JOIN preferred_direction pd ON pd.passenger_id::text = p.passenger_id::text
+     LEFT JOIN preferred_conditions pc ON pc.passenger_id::text = p.passenger_id::text
+     LEFT JOIN preferred_airport pa ON pa.passenger_id::text = p.passenger_id::text
+WITH DATA;
