@@ -2,6 +2,10 @@
 
 Power BI dashboard for sales analysis, customer survival, and ARPU across all 17 regions and key cities of Kazakhstan. Daily and monthly views are implemented as **separate report pages**.
 
+📊 **[Live Dashboard →](https://app.powerbi.com/reportEmbed?reportId=ff0813e1-8854-4197-a857-79e90619aa2d&autoAuth=true&ctid=dccaf2c7-b668-4b0e-a384-f24f514233bb)**
+
+🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.
+
 ---
 
 ## 🗂️ General Structure
@@ -188,8 +192,6 @@ RegionKey = 'Sales&Survival'[area] & 'Sales&Survival'[MarketCode]
 
 ### Calendar
 
-**Columns:**
-
 | Column | Type | Description |
 |---|---|---|
 | `Date` | Date | Base date column |
@@ -237,7 +239,6 @@ DateWithData =
 ```dax
 MaxDate = "Date as of: " & FORMAT(MAX(daily_sales[date_key]), "dd.mm.yy")
 ```
-
 ```dax
 ShowValueForDates =
 VAR LastDateWithData = CALCULATE(MAX(daily_sales[date_key]), REMOVEFILTERS())
@@ -394,48 +395,37 @@ Rows = cohort period (Jan25 … Oct25 + Total). Columns = months after first sal
 #### Survival % — 11 measures (2m → 12m)
 
 ```dax
-Survival 2m % =
-DIVIDE(SUM('Sales&Survival'[s2a_2m]), SUM('Sales&Survival'[gs]))
+Survival 2m % = DIVIDE(SUM('Sales&Survival'[s2a_2m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 3m % =
-DIVIDE(SUM('Sales&Survival'[s2a_3m]), SUM('Sales&Survival'[gs]))
+Survival 3m % = DIVIDE(SUM('Sales&Survival'[s2a_3m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 4m % =
-DIVIDE(SUM('Sales&Survival'[s2a_4m]), SUM('Sales&Survival'[gs]))
+Survival 4m % = DIVIDE(SUM('Sales&Survival'[s2a_4m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 5m % =
-DIVIDE(SUM('Sales&Survival'[s2a_5m]), SUM('Sales&Survival'[gs]))
+Survival 5m % = DIVIDE(SUM('Sales&Survival'[s2a_5m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 6m % =
-DIVIDE(SUM('Sales&Survival'[s2a_6m]), SUM('Sales&Survival'[gs]))
+Survival 6m % = DIVIDE(SUM('Sales&Survival'[s2a_6m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 7m % =
-DIVIDE(SUM('Sales&Survival'[s2a_7m]), SUM('Sales&Survival'[gs]))
+Survival 7m % = DIVIDE(SUM('Sales&Survival'[s2a_7m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 8m % =
-DIVIDE(SUM('Sales&Survival'[s2a_8m]), SUM('Sales&Survival'[gs]))
+Survival 8m % = DIVIDE(SUM('Sales&Survival'[s2a_8m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 9m % =
-DIVIDE(SUM('Sales&Survival'[s2a_9m]), SUM('Sales&Survival'[gs]))
+Survival 9m % = DIVIDE(SUM('Sales&Survival'[s2a_9m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 10m % =
-DIVIDE(SUM('Sales&Survival'[s2a_10m]), SUM('Sales&Survival'[gs]))
+Survival 10m % = DIVIDE(SUM('Sales&Survival'[s2a_10m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 11m % =
-DIVIDE(SUM('Sales&Survival'[s2a_11m]), SUM('Sales&Survival'[gs]))
+Survival 11m % = DIVIDE(SUM('Sales&Survival'[s2a_11m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-Survival 12m % =
-DIVIDE(SUM('Sales&Survival'[s2a_12m]), SUM('Sales&Survival'[gs]))
+Survival 12m % = DIVIDE(SUM('Sales&Survival'[s2a_12m]), SUM('Sales&Survival'[gs]))
 ```
 
 ---
@@ -443,52 +433,40 @@ DIVIDE(SUM('Sales&Survival'[s2a_12m]), SUM('Sales&Survival'[gs]))
 #### ARPU — 12 measures (1m → 12m)
 
 ```dax
-ARPU 1m =
-DIVIDE(SUM('Sales&Survival'[revenue_1m]), SUM('Sales&Survival'[gs]))
+ARPU 1m = DIVIDE(SUM('Sales&Survival'[revenue_1m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 2m =
-DIVIDE(SUM('Sales&Survival'[revenue_2m]), SUM('Sales&Survival'[gs]))
+ARPU 2m = DIVIDE(SUM('Sales&Survival'[revenue_2m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 3m =
-DIVIDE(SUM('Sales&Survival'[revenue_3m]), SUM('Sales&Survival'[gs]))
+ARPU 3m = DIVIDE(SUM('Sales&Survival'[revenue_3m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 4m =
-DIVIDE(SUM('Sales&Survival'[revenue_4m]), SUM('Sales&Survival'[gs]))
+ARPU 4m = DIVIDE(SUM('Sales&Survival'[revenue_4m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 5m =
-DIVIDE(SUM('Sales&Survival'[revenue_5m]), SUM('Sales&Survival'[gs]))
+ARPU 5m = DIVIDE(SUM('Sales&Survival'[revenue_5m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 6m =
-DIVIDE(SUM('Sales&Survival'[revenue_6m]), SUM('Sales&Survival'[gs]))
+ARPU 6m = DIVIDE(SUM('Sales&Survival'[revenue_6m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 7m =
-DIVIDE(SUM('Sales&Survival'[revenue_7m]), SUM('Sales&Survival'[gs]))
+ARPU 7m = DIVIDE(SUM('Sales&Survival'[revenue_7m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 8m =
-DIVIDE(SUM('Sales&Survival'[revenue_8m]), SUM('Sales&Survival'[gs]))
+ARPU 8m = DIVIDE(SUM('Sales&Survival'[revenue_8m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 9m =
-DIVIDE(SUM('Sales&Survival'[revenue_9m]), SUM('Sales&Survival'[gs]))
+ARPU 9m = DIVIDE(SUM('Sales&Survival'[revenue_9m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 10m =
-DIVIDE(SUM('Sales&Survival'[revenue_10m]), SUM('Sales&Survival'[gs]))
+ARPU 10m = DIVIDE(SUM('Sales&Survival'[revenue_10m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 11m =
-DIVIDE(SUM('Sales&Survival'[revenue_11m]), SUM('Sales&Survival'[gs]))
+ARPU 11m = DIVIDE(SUM('Sales&Survival'[revenue_11m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-ARPU 12m =
-DIVIDE(SUM('Sales&Survival'[revenue_12m]), SUM('Sales&Survival'[gs]))
+ARPU 12m = DIVIDE(SUM('Sales&Survival'[revenue_12m]), SUM('Sales&Survival'[gs]))
 ```
 
 ---
@@ -496,52 +474,40 @@ DIVIDE(SUM('Sales&Survival'[revenue_12m]), SUM('Sales&Survival'[gs]))
 #### S2A % — 12 measures (1m → 12m)
 
 ```dax
-S2A 1m % =
-DIVIDE(SUM('Sales&Survival'[s2a_1m]), SUM('Sales&Survival'[gs]))
+S2A 1m % = DIVIDE(SUM('Sales&Survival'[s2a_1m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 2m % =
-DIVIDE(SUM('Sales&Survival'[s2a_2m]), SUM('Sales&Survival'[gs]))
+S2A 2m % = DIVIDE(SUM('Sales&Survival'[s2a_2m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 3m % =
-DIVIDE(SUM('Sales&Survival'[s2a_3m]), SUM('Sales&Survival'[gs]))
+S2A 3m % = DIVIDE(SUM('Sales&Survival'[s2a_3m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 4m % =
-DIVIDE(SUM('Sales&Survival'[s2a_4m]), SUM('Sales&Survival'[gs]))
+S2A 4m % = DIVIDE(SUM('Sales&Survival'[s2a_4m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 5m % =
-DIVIDE(SUM('Sales&Survival'[s2a_5m]), SUM('Sales&Survival'[gs]))
+S2A 5m % = DIVIDE(SUM('Sales&Survival'[s2a_5m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 6m % =
-DIVIDE(SUM('Sales&Survival'[s2a_6m]), SUM('Sales&Survival'[gs]))
+S2A 6m % = DIVIDE(SUM('Sales&Survival'[s2a_6m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 7m % =
-DIVIDE(SUM('Sales&Survival'[s2a_7m]), SUM('Sales&Survival'[gs]))
+S2A 7m % = DIVIDE(SUM('Sales&Survival'[s2a_7m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 8m % =
-DIVIDE(SUM('Sales&Survival'[s2a_8m]), SUM('Sales&Survival'[gs]))
+S2A 8m % = DIVIDE(SUM('Sales&Survival'[s2a_8m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 9m % =
-DIVIDE(SUM('Sales&Survival'[s2a_9m]), SUM('Sales&Survival'[gs]))
+S2A 9m % = DIVIDE(SUM('Sales&Survival'[s2a_9m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 10m % =
-DIVIDE(SUM('Sales&Survival'[s2a_10m]), SUM('Sales&Survival'[gs]))
+S2A 10m % = DIVIDE(SUM('Sales&Survival'[s2a_10m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 11m % =
-DIVIDE(SUM('Sales&Survival'[s2a_11m]), SUM('Sales&Survival'[gs]))
+S2A 11m % = DIVIDE(SUM('Sales&Survival'[s2a_11m]), SUM('Sales&Survival'[gs]))
 ```
 ```dax
-S2A 12m % =
-DIVIDE(SUM('Sales&Survival'[s2a_12m]), SUM('Sales&Survival'[gs]))
+S2A 12m % = DIVIDE(SUM('Sales&Survival'[s2a_12m]), SUM('Sales&Survival'[gs]))
 ```
 
 ---
@@ -587,7 +553,7 @@ Revenue 12m = SUM('Sales&Survival'[revenue_12m])
 
 ---
 
-#### Paid Subs — shared measures (used across pages)
+#### Paid Subs — shared measures
 
 ```dax
 Paid Subs = SUM('Sales&Survival'[payability])
@@ -633,3 +599,4 @@ Paid Subs YOY % = DIVIDE([Paid Subs YOY], [Paid Subs PY], 0)
 | Power Query (M) | Data load, Append, type casting |
 | DAX | Calendar table, calculated columns, measures |
 | Excel | Source data files (one per region) |
+| Cohort Analysis | Survival & ARPU cohort tables |

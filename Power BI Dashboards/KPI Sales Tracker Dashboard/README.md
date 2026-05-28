@@ -3,6 +3,10 @@
 ## 📋 Business Objective
 The main objective of this dashboard is to **track sales plan execution** across regions and months, and to **forecast the final year-end performance** based on actual results and working days passed.
 
+📊 **[Live Dashboard →](https://app.powerbi.com/view?r=eyJrIjoiYjU0MjdiYWYtZTUxMy00NGFlLWJkNmQtOTcwZjhmNGI5NGVmIiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9)**
+
+🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.
+
 ---
 
 ## 📸 Dashboard Pages
@@ -270,4 +274,3 @@ IF(HASONEVALUE(DimRegion[Region]),
 
 ![RLS Setup](screenshots/RLS_Set.png)
 ![RLS View](screenshots/RLS_View.png)
-

@@ -1,12 +1,16 @@
-# 📊 Clinic Analytics Dashboard
+# 🏥 Clinic Analytics Dashboard
 
-Дашборд для анализа ключевых показателей Медицинского центра Атлас (группа компаний ПРОТЕК). 
+Дашборд для анализа ключевых показателей Медицинского центра Атлас (группа компаний ПРОТЕК).
+
+> Выполнен в рамках тестового задания при трудоустройстве в одну из компаний.
+
+📊 **[Live Dashboard →](https://app.powerbi.com/view?r=eyJrIjoiZGQ4NTU0ZmQtMTE5Ni00YWZhLWEwOGYtMmViZTBkYTQ2YmI2IiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9)**
 
 **Стек:** `Power BI` `DAX` `Power Query` `PostgreSQL`
 
 ---
 
-## Общая структура
+## 📋 Общая структура
 
 **Страницы:**
 - Отчёт по сотрудникам ГКП
@@ -53,7 +57,7 @@ RETURN FORMAT(d, "dd.mm.yy в hh:mm", "ru-RU")
 
 ---
 
-## Power Query — источники данных
+## ⚙️ Power Query — источники данных
 
 Подключение к PostgreSQL настроено в Power Query. Все преобразования сделаны на стороне Power Query.
 
@@ -67,7 +71,7 @@ RETURN FORMAT(d, "dd.mm.yy в hh:mm", "ru-RU")
 
 ---
 
-## Связи
+## 🔗 Связи
 
 Все три факт-таблицы связаны с `Calendar` через поле `Datekey` (many-to-one). Прямых связей между факт-таблицами нет — кросс-табличные вычисления реализованы через DAX (`INTERSECT`, `CALCULATETABLE`).
 
@@ -76,7 +80,9 @@ RETURN FORMAT(d, "dd.mm.yy в hh:mm", "ru-RU")
 
 ---
 
-## Таблица Calendar
+## 📐 DAX Measures
+
+### Таблица Calendar
 
 ```dax
 Calendar = 
@@ -102,7 +108,7 @@ ADDCOLUMNS(
 
 > ⚠️ Сортировка: `Period` сортируется по `PeriodOrder`, `Quarter` — по `QuarterOrder`.
 
-**Доп. столбец `Last 12 Months`:**
+**Столбец `Last 12 Months`:**
 ```dax
 Last 12 Months = 
 VAR MaxDate       = CALCULATE(MAX('Calendar'[Date]), ALL('Calendar'))
@@ -114,7 +120,7 @@ RETURN
 
 ---
 
-## Вычисляемые столбцы в источниках
+### Вычисляемые столбцы в источниках
 
 **V_CP_ATLAS_UNIQUE:**
 ```dax
@@ -135,7 +141,7 @@ SWITCH(TRUE(),
 
 ---
 
-## Страница 1 — Отчёт по сотрудникам ГКП
+### Страница 1 — Отчёт по сотрудникам ГКП
 
 **Цель:** смотрим активность сотрудников ГКП и их родственников в клинике.
 
@@ -145,7 +151,6 @@ SWITCH(TRUE(),
 
 ![viz1](Screenshots/viz1.png)
 
-**Меры:**
 ```dax
 ГКП = 
 CALCULATE(
@@ -198,7 +203,7 @@ Tooltip ГКП =
 
 ---
 
-## Страница 2 — Отчёт по депозитам
+### Страница 2 — Отчёт по депозитам
 
 **Цель:** смотрим сколько депозитов размещается и насколько эффективно клиенты их используют.
 
@@ -208,7 +213,6 @@ Tooltip ГКП =
 
 ![viz2](Screenshots/viz2.png)
 
-**Меры:**
 ```dax
 Кол-во депозитов = 
 CALCULATE(
@@ -258,7 +262,7 @@ Tooltip Депозиты =
 
 ---
 
-## Страница 3 — Отчёт по комплексным программам
+### Страница 3 — Отчёт по комплексным программам
 
 **Цель:** смотрим продажи КП, активность клиентов в программах и конверсии.
 
@@ -273,7 +277,6 @@ Tooltip Депозиты =
 
 ![viz3](Screenshots/viz3.png)
 
-**Меры:**
 ```dax
 Кол-во КП = 
 DISTINCTCOUNT(V_CP_ATLAS_UNIQUE[PAT_CP_ID])
