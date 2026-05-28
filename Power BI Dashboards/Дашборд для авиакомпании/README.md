@@ -1,6 +1,6 @@
 # ✈️ Airline Analytics Dashboard
 
-> **Учебный проект** в рамках курса [Product Masters: Data Analyst](https://yerkesalmurza.github.io/portfolio/#)
+> **Учебный проект** в рамках курса Product Masters: Data Analyst
 
 Комплексная панель мониторинга авиакомпании на основе открытой базы данных PostgreSQL (`bookings`).
 Дашборд охватывает 5 аналитических страниц: общую информацию, клиентов, самолёты, направления и статусы рейсов.
