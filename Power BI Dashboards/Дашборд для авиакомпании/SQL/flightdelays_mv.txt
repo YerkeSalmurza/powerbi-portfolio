@@ -1,0 +1,13 @@
+-- bookings.flightdelays_mv исходный текст
+
+CREATE MATERIALIZED VIEW bookings.flightdelays_mv
+TABLESPACE pg_default
+AS SELECT f.scheduled_departure::date AS flight_date,
+    f.departure_airport AS airport_code,
+    a.model,
+    f.status,
+    round(EXTRACT(epoch FROM f.actual_arrival - f.scheduled_arrival) / 60.0) AS delay_minutes,
+    count(*) OVER (PARTITION BY (f.scheduled_departure::date), f.departure_airport, a.model) AS flights_cnt
+   FROM bookings.flights f
+     LEFT JOIN bookings.aircrafts a ON f.aircraft_code = a.aircraft_code
+WITH DATA;
