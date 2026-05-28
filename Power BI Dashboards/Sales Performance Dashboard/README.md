@@ -2,6 +2,10 @@
 
 Dashboard for tracking sales plan execution and forecasting year-end performance across key products, regions, and time periods.
 
+📊 **[Live Dashboard →](https://app.powerbi.com/view?r=eyJrIjoiNDAzYWFmM2EtZjQzOC00OWUyLWE1ZGYtYzRlYzkzZjg4NDAyIiwidCI6ImRjY2FmMmM3LWI2NjgtNGIwZS1hMzg0LWYyNGY1MTQyMzNiYiJ9)**
+
+🔒 Synthetic dataset based on real business logic. DAX measures and data model available on GitHub.
+
 **Stack:** `Power BI` `DAX` `Power Query` `Excel`
 
 ---
@@ -169,7 +173,7 @@ IF(
 
 ---
 
-## 📈 Measures
+## 📐 DAX Measures
 
 ### 🗓️ Working Days
 
@@ -394,7 +398,7 @@ CALCULATE(
 
 ---
 
-### 🎨 Conditional Formatting (Color)
+### 🎨 Conditional Formatting
 
 ```dax
 KPI Plan Execution Colour FX =
