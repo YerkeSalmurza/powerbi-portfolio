@@ -31,22 +31,22 @@ Dashboard for tracking sales plan execution and forecasting year-end performance
 ## 📸 Screenshots
 
 ### Sales Targets
-![Sales Targets](screenshots/SalesTargets.png)
+![Sales Targets](screenshots/sales_target.png)
 
 ### Target Performance
-![Target Performance](screenshots/TargetPerformance.png)
+![Target Performance](screenshots/target_performance.png)
 
 ### Power Query Structure
-![Power Query](screenshots/PQ.png)
+![Power Query](screenshots/Power_Query.png)
 
 ### Data Model — Diagram View
-![Data Model](screenshots/DM_1.png)
+![Data Model](screenshots/Data_Model.png)
 
 ### Data Model — Relationships List (Part 1)
-![Relationships Part 1](screenshots/DM_3.png)
+![Relationships Part 1](screenshots/Relationtip_1.png)
 
 ### Data Model — Relationships List (Part 2)
-![Relationships Part 2](screenshots/DM_2.png)
+![Relationships Part 2](screenshots/Relationtip_2.png)
 
 ---
 
